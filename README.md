@@ -1,3 +1,5 @@
+<b>Examples / Slide.html :נמצאת במיקום הזה multi-swipers הפונקציה של</b></br>
+<br>
 class="swiper multi-swipers <b>swiper-on-mobile</b>" // max-width: 767px <br>
 OR<br>
 class="swiper multi-swipers <b>swiper-on-tablet</b>" // max-width: 991px <br>
