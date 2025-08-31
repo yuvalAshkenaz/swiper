@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<title>thumbs-boxes</title>
+<style type="text/css">
+/* Demo Styles */
+html {height: 100%;direction:rtl;}
+button{cursor:pointer;}
+body {margin: 0;font-family: Arial, Helvetica, sans-serif;font-size: 13px;line-height: 1.5;position: relative;height: 100%;}
+.swiper{width: 100%;color: #fff;text-align: center;}
+.red-slide {background: #ca4040;}
+.blue-slide {background: #4390ee;}
+.orange-slide {background: #ff8604;}
+.green-slide {background: #49a430;}
+.pink-slide {background: #973e76;}
+.swiper-slide .title {font-style: italic;font-size: 42px;margin:80px 0;line-height: 45px;height:200px;}
+.pagination{padding:10px 0;}
+.swiper-pagination-bullet{margin:0 5px;cursor:pointer;}
+.swiper-pagination-switch {display: inline-block;width: 8px;height: 8px;border-radius: 8px;background: #222;margin-right: 5px;opacity: 0.8;border: 1px solid #fff;cursor: pointer;}
+.swiper-visible-switch {background: #aaa;}
+.swiper-active-switch {background: #fff;}
+.thumbs-banner-swiper{width:800px;margin:200px auto 2000px;}
+.img-cover{width:100%;height:100%;object-fit:cover;}
+:focus{outline:2px solid red;outline-offset:2px;}
+
+	
+.swiper-pagination-wrap {
+	width: 100%;
+	display: flex;
+	line-height: 1px;
+	position: absolute;
+	left: 0;
+	bottom: 50px;
+	z-index: 1;
+	justify-content: center;
+	align-items: center;
+}
+.swiper-pagination-wrap .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+	display: flex;
+	width: auto;
+	position: static;
+	line-height: 1px;
+	gap: 10px;
+}
+.swiper-pagination-bullet {
+	--swiper-pagination-bullet-width: 100px;
+	--swiper-pagination-bullet-height: 2px;
+	--swiper-pagination-bullet-border-radius: 8px;
+	--swiper-pagination-bullet-inactive-opacity: 0.4;
+	--swiper-pagination-bullet-inactive-color: var(--grey, #6A6B70);
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+.swiper-pagination-bullet-active {
+	--swiper-pagination-bullet-opacity: 1;
+	--swiper-pagination-color: var(--Color---Lexus, #202020);
+}
+.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+    --swiper-pagination-bullet-horizontal-gap: 0;
+}
+.next,
+.prev{
+	display: flex;
+	width: 57px;
+	height: 30px;
+	position: static;
+	align-items: center;
+	justify-content: center;
+}
+.hptb-thumbs-wrap {
+	display: flex;
+	width: 415px;
+	flex-wrap: wrap;
+	gap: 20px;
+	position: absolute;
+	left: -webkit-calc((100% - 1780px) / 2);
+	left: calc((100% - 1780px) / 2);
+	top: 140px;
+	z-index: 2;
+	direction: ltr;
+}
+.hptb-thumb-box {
+	background: #eee;
+	width: -webkit-calc(50% - 10px);
+	width: calc(50% - 10px);
+	height: 182px;
+	border-radius: 20px;
+	overflow: hidden;
+	position: relative;
+	-webkit-transition:all 0.3s ease;
+	transition:all 0.3s ease;
+}
+.hptb-thumb-box:nth-child(3n) {
+	width: 100%;
+}
+.hptb-thumb-box::after {
+	content: "";
+	background: var(--Color---Lexus, #202020);
+	opacity: 0.4;
+	position: absolute;
+	inset: 0;
+	-webkit-transition:all 0.3s ease;
+	transition:all 0.3s ease;
+}
+.hptb-thumb-box.active {
+	box-shadow: #1E3254 0 0 25px -10px;
+}
+.hptb-thumb-box.active::after {
+	opacity: 0;
+}
+.play {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 2;
+	margin: -20px 0 0 -20px;
+}
+.hptb-thumb-box-progress-wrap {
+	background: #F0F0F0;
+	height: 4px;
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+}
+.hptb-thumb-box-progress {
+	background: var(--progress-swiper, #253559);
+	width: 0;
+	height: 100%;
+}
+</style>
+</head>
+<body>
+
+<!-------------- DEMOS ---------------->
+<!-- http://idangero.us/swiper/demos -->
+
+
+<!-------------------------------------------
+	.swiper -צריך להיות גובה ל
+-------------------------------------------->
+<div class="swiper thumbs-banner-swiper" style="height:300px;">
+	
+	<div class="swiper-wrapper">
+		<div class="swiper-slide red-slide">
+			<div class="title" style="line-height:100px;margin:0;">Slide 1</div>
+		</div>
+		<div class="swiper-slide blue-slide">
+			<div class="title" style="line-height:100px;margin:0;">Slide 2</div>
+		</div>
+		<div class="swiper-slide orange-slide">
+			<video loop preload muted plays-inline playsinline class="img-cover">
+				<source src="../../עזרים/mov_bbb.mp4" type="video/mp4" />
+			</video>
+		</div>
+	</div>
+	
+	<div class="swiper-pagination-wrap">
+		<button type="button" class="next" aria-label="לחצו כאן להצגת הבאנר הבא">
+			<svg xmlns="http://www.w3.org/2000/svg" width="9" height="18" viewBox="0 0 9 18" fill="none"><path d="M0.75 16.5L8.25 9L0.75 1.5" stroke="var(--bs-secondary, #FF0022)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+		</button>
+		<div class="swiper-pagination"></div>
+		<button type="button" class="prev" aria-label="לחצו כאן להצגת הבאנר הקודם">
+			<svg xmlns="http://www.w3.org/2000/svg" width="9" height="18" viewBox="0 0 9 18" fill="none"><path d="M8.25 1.5L0.749999 9L8.25 16.5" stroke="var(--bs-secondary, #FF0022)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+		</button>
+	</div>
+	
+</div>
+
+<div class="hptb-thumbs-wrap">
+	<button type="button" class="hptb-thumb-box">
+		Box 1
+		<div class="hptb-thumb-box-progress-wrap">
+			<div class="hptb-thumb-box-progress"></div>
+		</div>
+	</button>
+	<button type="button" class="hptb-thumb-box">
+		Box 2
+		<div class="hptb-thumb-box-progress-wrap">
+			<div class="hptb-thumb-box-progress"></div>
+		</div>
+	</button>
+	<button type="button" class="hptb-thumb-box">
+		Box 3
+		<div class="hptb-thumb-box-progress-wrap">
+			<div class="hptb-thumb-box-progress"></div>
+		</div>
+	</button>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+// HP Banner swiper
+document.querySelectorAll('.thumbs-banner-swiper').length && (function(){
+	window.hp_top_banner_swiper = new Swiper('.thumbs-banner-swiper', {
+		speed					: 600,
+		rtl						: true,
+		slidesPerView			: 1,
+		updateOnImagesReady		: true,
+		preventClicks			: true,
+		centerInsufficientSlides: true,
+		touchMoveStopPropagation: true,
+		watchSlidesProgress		: true,
+		grabCursor				: true,
+		keyboard				: true,
+		pagination				: {
+									el 			 : '.thumbs-banner-swiper .swiper-pagination',
+									clickable	 : true,
+									renderBullet : function (i, className) {
+										return '<button type="button" class="'+className+'" aria-label="לחצו כאן למעבר לשקופית '+(i+1)+'"></button>';
+									}
+								},
+		navigation				: {
+									nextEl : '.thumbs-banner-swiper .next',
+									prevEl : '.thumbs-banner-swiper .prev',
+								},
+		a11y					: {
+									prevSlideMessage: 'מעבר לשקופית הקודמת',
+									nextSlideMessage: 'מעבר לשקופית הבאה',
+								  },
+		effect 					: 'fade',
+		loop					: true,
+		on						: {
+									slideChange: function(swiper){
+										if( document.querySelector('.thumbs-banner-swiper .swiper-pagination-bullet:focus') ) {
+											document.querySelector('.thumbs-banner-swiper .swiper-pagination-bullet-active').focus();
+										}
+										
+										if( jQuery('.thumbs-banner-swiper').length > 1 && ! jQuery('.thumbs-banner-swiper *:focus').length )
+											thumbsProgress({ index: swiper.realIndex });
+										
+										if( document.querySelector('.hptb-thumb-box:focus') ) {
+											document.querySelector('.hptb-thumb-box.active').focus();
+										}
+									},
+									slideChangeTransitionEnd: function(swiper){
+										var active_slide = document.querySelector('.thumbs-banner-swiper .swiper-slide-active');
+										if( active_slide ) {
+											// עצירת הווידאו בכל שאר ה-slides
+											document.querySelectorAll('.thumbs-banner-swiper .swiper-slide').forEach(function (slide) {
+												if ( slide !== active_slide ) { // בדיקה שה-slide אינו ה-slide הפעיל
+													var videoElement = slide.querySelector('video');
+													if (videoElement) {
+														if ( ! videoElement.paused && ! videoElement.ended ) {
+															videoElement.pause(); // עצירת הווידאו
+															videoElement.currentTime = 0; // איפוס הזמן להתחלה
+														}
+													}
+												}
+											});
+
+											// הפעלת הווידאו של ה-slide הפעיל
+											var video = active_slide.querySelector('video');
+											if ( video ) {
+												video.play();
+											}
+										}
+									},
+								}
+	});
+}());
+// hp banner swiper thumbs
+jQuery('.hptb-thumb-box').each(function(i){
+	jQuery(this).attr('data-index', i);
+	// Click
+	jQuery(this).click(function(){
+		var isActive = jQuery(this).hasClass('active');
+		
+		jQuery('.hptb-thumb-box').not( jQuery(this) ).removeClass('clicked');
+		jQuery(this).toggleClass('clicked');
+		
+		if( isActive && jQuery(this).hasClass('clicked') ) {
+			jQuery('.hptb-thumb-box-progress').stop();
+		} else {
+			thumbsProgress({
+				index: i
+			});
+			window.hp_top_banner_swiper.slideToLoop( i );
+		}
+	});
+});
+
+thumbsProgress({ index: 0 });
+
+function thumbsProgress( obj ) {
+	jQuery('.hptb-thumb-box.clicked').removeClass('clicked');
+	var box = jQuery('.hptb-thumb-box[data-index="'+obj.index+'"]');
+	jQuery('.hptb-thumb-box-progress').stop();
+	if( ! box.hasClass('active') ) {
+		jQuery('.hptb-thumb-box.active').not( box ).removeClass('active');
+		box.addClass('active');
+	}
+	// קבלת הרוחב של התקדמות התיבה
+	var progressWidth = box.find('.hptb-thumb-box-progress').width();
+
+	// קבלת הרוחב של האלמנט העוטף
+	var wrapperWidth = box.find('.hptb-thumb-box-progress-wrap').width();
+
+	// חישוב האחוזים שהושגו
+	var percentage = Math.round((progressWidth / wrapperWidth) * 100);
+
+	// הזמן הכולל להגיע מ-0% ל-100% (לדוגמה, 5 שניות)
+	var totalTime = 5; // שניות
+
+	// המרה לאלפיות שנייה
+	var totalTimeMs = totalTime * 1000;
+
+	// חישוב האחוזים שנותרו
+	var remainingPercentage = 100 - percentage;
+
+	// חישוב הזמן שנשאר באלפיות שנייה
+	var remainingTimeMs = (totalTimeMs / 100) * remainingPercentage;
+
+	var width = percentage+'%';
+	jQuery('.hptb-thumb-box-progress').not( box ).css('width', 0);
+	box.find('.hptb-thumb-box-progress').css('width', width);
+	
+	box.find('.hptb-thumb-box-progress').animate({
+		width: '100%'
+	}, remainingTimeMs, "linear", function(){
+		window.hp_top_banner_swiper.slideNext();
+	});
+}
+</script>
+</body>
+</html>

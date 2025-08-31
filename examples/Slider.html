@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	<title></title>
+	<style type="text/css">
+	/* Demo Styles */
+	html{height:100%;direction:rtl;}
+	body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;position:relative;height:100%;}
+	.swiper,.center{width:100%;color:#fff;text-align:center;}
+	.red-slide{background:#ca4040;}
+	.blue-slide{background:#4390ee;}
+	.orange-slide{background:#ff8604;}
+	.green-slide{background:#49a430;}
+	.pink-slide{background:#973e76;}
+	.swiper-slide .title{font-style:italic;font-size:42px;margin:80px 0;line-height:45px;height:200px;}
+	.pagination{padding:10px 0;}
+	.swiper-pagination-bullet{margin:0 5px;cursor:pointer;}
+	.swiper-pagination-switch{display:inline-block;width:8px;height:8px;border-radius:8px;background:#222; margin-right:5px;opacity:0.8;border:1px solid #fff;cursor:pointer;}
+	.swiper-visible-switch{background:#aaa;}
+	.swiper-active-switch{background:#fff;}
+	h2{direction:ltr;}
+	</style>
+</head>
+<body>
+
+<!-------------- DEMOS ---------------->
+<!-- http://idangero.us/swiper/demos -->
+
+
+<!----- אפשרות להכניס את האפשרויות לתוך פרמטר אחד ------>
+<div data-options='{
+	"autoplay"					: 3000,
+	"speed"						: 600,
+	"slidesPerView"				: 2,
+	"calculateHeight"			: true,
+	"updateOnImagesReady"		: true,
+	"preventClicks"				: true,
+	"touchMoveStopPropagation"	: true,
+	"grabCursor"				: true,
+	"keyboardControl"			: true,
+	"navigation"				: false,
+	"pagination"				: {
+									el : ".hpWrapper .pagination",
+									clickable	 : true
+								},
+	"breakpoints"				: {
+									"768"	: {
+										navigation		: {
+															nextEl : ".hpWrapper .next",
+															prevEl : ".hpWrapper .prev",
+														},
+										"pagination"	: false,
+										"slidesPerView"	: 4
+									},
+									"480"	: {
+										"slidesPerView"	: 3
+									}
+								}
+	}'></div>
+
+
+<!-- swiper 1 -->
+<h2><center>Pagination type "Progressbar"</center></h2>
+<div class="swiper-wrap">
+	<!-- 
+		אם רוצים רוחב קבוע לתמונות אז לשנות לזה:
+		data-items="auto"
+	 -->
+	<div
+	class="swiper multi-swipers" 
+	data-items="2" 
+	data-arrows="true" 
+	data-autoplay="3000" 
+	data-pagination="true" 
+	data-pagination-type="progressbar" 
+	data-center-slides="true" 
+	data-breakpoints-992='{"slidesPerView":4}' 
+	data-breakpoints-768='{"slidesPerView":4}' 
+	data-breakpoints-600='{"slidesPerView":3}'
+	>
+		<div class="swiper-wrapper">
+			<div class="swiper-slide red-slide">
+				<div class="title">Slide 1</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title">Slide 2</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title">Slide 3</div>
+			</div>
+			<div class="swiper-slide green-slide">
+				<div class="title">Slide 4</div>
+			</div>
+			<div class="swiper-slide pink-slide">
+				<div class="title">Slide 5</div>
+			</div>
+			<div class="swiper-slide red-slide">
+				<div class="title">Slide 6</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title">Slide 7</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title">Slide 8</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<div class="center">
+		<button type="button" class="next" aria-label="לחצו כאן להצגת השקופית הבאה">Next</button>
+		<button type="button" class="prev" aria-label="לחצו כאן להצגת השקופית הקודמת">Prev</button>
+	</div>
+</div>
+
+<!-- swiper 2 -->
+<h2><center>Pagination type "Fraction"</center></h2>
+<div class="swiper-wrap">
+	<div 
+	class="swiper multi-swipers" 
+	data-items="3" 
+	data-arrows="true" 
+	data-pagination="true" 
+	data-pagination-type="fraction" 
+	data-loop="1"
+	>
+		<div class="swiper-wrapper">
+			<div class="swiper-slide red-slide swiper-no-swiping">
+				<div class="title">swiper-no-swiping</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title">Slide 2</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title">Slide 3</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title">Slide 7</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title">Slide 8</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<div class="center">
+		<button type="button" class="next">Next</button>
+		<button type="button" class="prev">Prev</button>
+	</div>
+</div>
+
+<!-- swiper 3 -->
+<h2><center>Deafult Pagination</center></h2>
+<div class="swiper-wrap">
+	<div 
+	class="swiper multi-swipers swiper-on-tablet" 
+	data-items="3" 
+	data-arrows="true" 
+	data-pagination="true" 
+	data-loop="1"
+	>
+		<div class="swiper-wrapper">
+			<div class="swiper-slide red-slide swiper-no-swiping">
+				<div class="title">swiper-no-swiping</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title">Slide 2</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title">Slide 3</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title">Slide 7</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title">Slide 8</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<div class="center">
+		<button type="button" class="next">Next</button>
+		<button type="button" class="prev">Prev</button>
+	</div>
+</div>
+
+<!-----------------------------------
+	class ביטול הגלילה - להוסיף:
+		 swiper-no-swiping 
+------------------------------------>
+ 
+<!-- swiper 3 vertical -->
+<!-------------------------------------------
+	.swiper -צריך להיות גובה ל
+-------------------------------------------->
+<div class="swiper-wrap">
+	<div class="swiper vertical-swipe" style="height:300px;">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide red-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 1</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 2</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 3</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 7</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 8</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<button type="button" class="v-swipe-next">Next</button>
+	<button type="button" class="v-swipe-prev">Prev</button>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+
+// HTML הבא על האייטמים ב class אם רוצים שלא יהיה אפשר לגלול בטאצ' אז להוסיף את ה
+// swiper-no-swiping
+
+
+
+// ריענון / Refresh
+// window.multiSwipers.update();
+
+
+
+//פונקציה למספר קרוסלות עם פרמטרים משתנים לכל אחת
+
+//-------------------------------------------------------
+// Swiper only on Tablet or Mobile
+if(
+	document.querySelectorAll('.swiper-on-desktop').length || 
+	document.querySelectorAll('.swiper-on-tablet').length || 
+	document.querySelectorAll('.swiper-on-mobile').length
+) {
+	window.addEventListener('resize', function() {
+		initMultiSwipers();
+	});
+}
+// MULTI swiper
+initMultiSwipers();
+function initMultiSwipers() {
+	window.multiSwipers = window.multiSwipers || [];
+	document.querySelectorAll('.multi-swipers').length && (function(){
+		document.querySelectorAll('.multi-swipers').forEach(function(e,i){
+			var is_swiper_alive = window.multiSwipers[i] && ! window.multiSwipers[i].destroyed;
+			if (
+				( e.classList.contains('swiper-on-desktop') && window.innerWidth <= 767 ) ||
+				( e.classList.contains('swiper-on-tablet') && window.innerWidth > 991 ) ||
+				( e.classList.contains('swiper-on-mobile') && window.innerWidth > 767 )
+			) {
+				if( is_swiper_alive ) {
+					window.multiSwipers[i].destroy(true, true);
+				}
+				return;
+			}
+			if( is_swiper_alive ) {
+				return;
+			}
+			
+			var itemNum			= ( e.getAttribute('data-items') != 'auto' ) ? parseInt( e.getAttribute('data-items') ) : 'auto';
+			var autoplay		= e.getAttribute('data-autoplay') ? parseInt( e.getAttribute('data-autoplay'), 10 ) : false;
+			var itemArrows		= e.getAttribute('data-arrows') ? true : false;
+			var nested			= e.getAttribute('data-nested') ? true : false;
+			var speed			= e.getAttribute('data-speed') ? parseInt( e.getAttribute('data-speed'), 10 ) : 600;
+			var margin			= e.getAttribute('data-margin') ? parseInt( e.getAttribute('data-margin'), 10 ) : 0;
+			var itemPagination	= e.getAttribute('data-pagination') ? true : false;
+			var paginationType	= e.getAttribute('data-pagination-type') ? e.getAttribute('data-pagination-type') : 'bullets';
+			var breakpoints_992	= e.getAttribute('data-breakpoints-992');
+			var breakpoints_768	= e.getAttribute('data-breakpoints-768');
+			var breakpoints_600	= e.getAttribute('data-breakpoints-600');
+			var centeredSlides	= e.getAttribute('data-center-slides') ? true : false;
+			var effect			= e.getAttribute('data-effect') || 'slide'; // "slide", "fade", "cube", "coverflow" or "flip"
+			var startSlideFrom	= e.getAttribute('data-start') ? parseInt( e.getAttribute('data-start'), 10 ) : 0;
+			var rtl 			= ( e.getAttribute('data-rtl') || document.querySelector('html').getAttribute('dir') === 'rtl' ) ? true : false;
+			var loop			= e.getAttribute('data-loop') ? true : false;
+			if( loop && itemNum != 'auto' && e.querySelectorAll('.swiper-slide').length <= itemNum ) {
+				loop = false;
+			}
+			
+			// breakpoints - לא כל הפרמטרים עובדים ב
+			// effect / pagination / loopedSlides -> breakpoints - לא עובדים ב
+			
+			var breakpoints = {};
+			if( breakpoints_992 ) {  //min-width: 992px
+				breakpoints['992'] = JSON.parse( breakpoints_992 );
+			}
+			if( breakpoints_768 ) {  //min-width: 768px
+				breakpoints['768'] = JSON.parse( breakpoints_768 );
+			}
+			if( breakpoints_600 ) {  //min-width: 600px
+				breakpoints['600'] = JSON.parse( breakpoints_600 );
+			}
+			
+			var wrap = e.closest('.swiper-wrap') ? e.closest('.swiper-wrap') : e.parentElement;
+			var next = wrap.querySelectorAll('.next');
+			var prev = wrap.querySelectorAll('.prev');
+			var pagination = wrap.querySelector('.swiper-pagination');
+			var nextBtns = [];
+			var prevBtns = [];
+			for( var n = 0; n < next.length; n++ ) {
+				nextBtns.push( next[n] );
+			};
+			for( var p = 0; p < prev.length; p++ ) {
+				prevBtns.push( prev[p] );
+			};
+			var options = e.getAttribute('data-options') ? JSON.parse( e.getAttribute('data-options') ) : '';
+			var swiperConfig = options || {
+				autoplay				: autoplay ? {
+											delay: autoplay,
+											pauseOnMouseEnter: true
+										} : false,
+				speed					: speed,
+				spaceBetween			: margin,
+				rtl						: rtl,
+				slidesPerView			: itemNum,
+				updateOnImagesReady		: true,
+				preventClicks			: true,
+				centerInsufficientSlides: true,
+				touchMoveStopPropagation: true,
+				watchSlidesProgress		: true,
+				nested					: nested,
+				grabCursor				: true,
+				keyboard				: true,
+				pagination				: itemPagination ? {
+											el 			 : pagination,
+											clickable	 : true,
+											renderBullet : function (i, className) {
+												return '<button type="button" class="'+className+'" aria-label="לחצו כאן למעבר לשקופית '+(i+1)+'"></button>';
+											},
+											type : paginationType
+										} : false,
+				navigation				: itemArrows ? {
+											nextEl : nextBtns,
+											prevEl : prevBtns,
+										} : false,
+				a11y					: {
+											prevSlideMessage: 'מעבר לשקופית הקודמת',
+											nextSlideMessage: 'מעבר לשקופית הבאה',
+										  },
+				breakpoints				: breakpoints,
+				effect 					: effect,
+				loop					: loop,
+				centeredSlides			: centeredSlides,
+				initialSlide			: startSlideFrom,
+				on						: {
+											slideChange: function(swiper){
+												// Accessibility
+												if( e.querySelector('.swiper-pagination-bullet:focus') ) {
+													e.querySelector('.swiper-pagination-bullet-active').focus();
+												}
+											}
+										}
+			};
+			
+			if( window.multiSwipers[i] ) {
+				window.multiSwipers[i] = new Swiper(e,swiperConfig);
+			} else {
+				window.multiSwipers.push( new Swiper(e,swiperConfig) );
+			}
+		});
+	}());
+};
+//-------------------------------------------------------
+
+//vertical swipe
+document.querySelectorAll('.vertical-swipe').length && (function(){
+	var vSwiper = new Swiper('.vertical-swipe', {
+		autoplay			: {
+								delay	: 2000,
+								disableOnInteraction :true
+							},
+		speed				: 1000,
+		calculateHeight		: true,
+		autoHeight			: false,
+		grabCursor			: true,
+		watchSlidesProgress	: true,
+		slidesPerView		: 3,
+		loop				: true,
+		navigation			: {
+								nextEl: '.v-swipe-next',
+								prevEl: '.v-swipe-prev',
+							},
+		direction			: 'vertical'
+	});
+}());
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<title></title>
+<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+<style type="text/css">
+/* Demo Styles */
+/* {outline:none !important;} */
+button{margin:0;padding:0;border:0;background:none;cursor:pointer;}
+html{height: 100%;direction:rtl;}
+body{background:#000;margin:0;text-align:center;font-family:Arial;font-size:13px;line-height:1.5;position:relative;height:100%;}
+.swiper-container{width:100%;color:#fff;text-align:center;}
+.red-slide{background:#ca4040;}
+.blue-slide{background:#4390ee;}
+.orange-slide{background:#ff8604;}
+.green-slide{background:#49a430;}
+.pink-slide{background:#973e76;}
+.swiper-slide .title{font-style:italic;font-size:42px;margin:80px 0;line-height:45px;height:200px;}
+.pagination{padding:10px 0;}
+.swiper-pagination-bullet{margin:0 5px;cursor:pointer;}
+.swiper-pagination-switch{display:inline-block;width:8px;height:8px;border-radius:8px;background:#222;margin-right:5px;opacity:0.8;border:1px solid #fff;cursor:pointer;}
+.swiper-visible-switch{background:#aaa;}
+.swiper-active-switch{background:#fff;}
+.next, .prev{background:#fff;display:inline-block;padding:10px 20px;margin:20px 7px;}
+/* End Demo Styles */
+
+
+.banner-play {
+	width: 72px;
+	height: 72px;
+	position: absolute;
+	left: 95px;
+	bottom: 85px;
+	z-index: 2;
+	-webkit-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+}
+.banner-play::after {
+	content: "";
+	background: url(play_pause.png) center bottom no-repeat;
+	width: 20px;
+	height: 24px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -12px 0 0 -10px;
+}
+.banner-play.stop::after {
+	background-position: center top;
+	margin-left: -7px;
+}
+.pie_progress__svg svg,
+.pie_progress__svg svg path {
+	-webkit-transition: all 0s ease;
+	transition: all 0s ease;
+}
+</style>
+</head>
+<body>
+
+<div class="swiper-wrap">
+	<!-- 
+		אם רוצים רוחב קבוע לתמונות אז לשנות לזה:
+		data-items="auto"
+	 -->
+	<div class="swiper swiper-with-progress">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide red-slide">
+				<div class="title"><a href="#">Slide</a> 1</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title"><a href="#">Slide</a> 2</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title"><a href="#">Slide</a> 3</div>
+			</div>
+			<div class="swiper-slide green-slide">
+				<div class="title"><a href="#">Slide</a> 4</div>
+			</div>
+			<div class="swiper-slide pink-slide">
+				<div class="title"><a href="#">Slide</a> 5</div>
+			</div>
+			<div class="swiper-slide red-slide">
+				<div class="title"><a href="#">Slide</a> 6</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title"><a href="#">Slide</a> 7</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title"><a href="#">Slide</a> 8</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<button type="button" class="next">Next</button>
+	<button type="button" class="prev">Prev</button>
+</div>
+<button type="button" class="banner-play pie-progress" role="progressbar" data-goal="100" title="לחצו כאן להפעלת/עצירת מעבר התמונות"></button>
+
+<script type="text/javascript" src="jquery-asPieProgress.0.4.7.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+
+// HTML הבא על האייטמים ב class אם רוצים שלא יהיה אפשר לגלול בטאצ' אז להוסיף את ה
+// swiper-no-swiping
+
+// swiper with progress
+document.querySelector('.swiper-with-progress') && (function(){
+	var swiperConfig = document.querySelector('.swiper-with-progress').getAttribute('data-options') || {
+		autoplay				: false,
+		speed					: 600,
+		slidesPerView			: 4,
+		updateOnImagesReady		: true,
+		preventClicks			: true,
+		rtl						: true,
+		grabCursor				: true,
+		keyboard				: true,
+		watchSlidesProgress		: true,
+		pagination				: {
+									el 			 : document.querySelector('.swiper-with-progress').querySelector('.swiper-pagination'),
+									clickable	 : true,
+									renderBullet : function (index, className) {
+										return '<button type="button" class="'+className+'" title="לחצו כאן למעבר לשקופית '+(index+1)+'"></button>';
+									}
+								},
+		navigation				: {
+									nextEl : document.querySelector('.swiper-with-progress').parentElement.querySelector('.next'),
+									prevEl : document.querySelector('.swiper-with-progress').parentElement.querySelector('.prev')
+								},
+		paginationClickable		: true,
+		effect 					: 'slide',
+		loop					: true,
+		on 						: {
+									slideChange : function(){
+										if( document.querySelector('.swiper-with-progress .swiper-pagination-bullet:focus') ) {
+											document.querySelector('.swiper-with-progress .swiper-pagination-bullet-active').focus();
+										}
+										jQuery('.pie-progress').asPieProgress('reset');
+										if( ! jQuery('.pie-progress').hasClass('stop') )
+											jQuery('.pie-progress').asPieProgress('start');
+									}
+								}
+	};
+	var mySwiper = new Swiper( document.querySelector('.swiper-with-progress'), swiperConfig );
+
+	//HP Banner progress bar
+	if( document.querySelector('.banner-play') ) {
+		//https://www.jqueryscript.net/demo/Animated-Circle-Progress-Bar-with-jQuery-SVG-asPieProgress/
+		//https://www.jqueryscript.net/loading/Animated-Circle-Progress-Bar-with-jQuery-SVG-asPieProgress.html
+		//https://github.com/thecreation/jquery-asPieProgress
+		
+		jQuery('.pie-progress').asPieProgress({
+			min			: 0,
+			max			: 100,
+			goal		: 100,
+			size		: 72,
+			speed		: 45,
+			barcolor	: '#39AF29',
+			barsize		: 4,
+			trackcolor	: 'rgba(255,255,255,0.2)',
+			fillcolor	: 'none',
+			easing		: 'linear'
+		});
+		jQuery('.pie-progress').asPieProgress('start');
+		jQuery('.pie-progress').on('asPieProgress::finish', function(){
+			mySwiper.slideNext();
+		});
+		jQuery('.pie-progress').click(function(){
+			var self = jQuery(this);
+			self.toggleClass('stop');
+			
+			if( self.hasClass('stop') ) {
+				self.asPieProgress('stop');
+			} else {
+				self.asPieProgress('start');
+			}
+		});
+	}
+}());
+
+</script>
+</body>
+</html>

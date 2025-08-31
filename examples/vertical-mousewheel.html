@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	<title>vertical-mousewheel</title>
+	<style type="text/css">
+	/* Demo Styles */
+	html {height: 100%;direction:rtl;}
+	body {margin: 0;font-family: Arial, Helvetica, sans-serif;font-size: 13px;line-height: 1.5;position: relative;height: 100%;}
+	.swiper{width: 100%;color: #fff;text-align: center;}
+	.red-slide {background: #ca4040;}
+	.blue-slide {background: #4390ee;}
+	.orange-slide {background: #ff8604;}
+	.green-slide {background: #49a430;}
+	.pink-slide {background: #973e76;}
+	.swiper-slide .title {font-style: italic;font-size: 42px;margin:80px 0;line-height: 45px;height:200px;}
+	.pagination{padding:10px 0;}
+	.swiper-pagination-bullet{margin:0 5px;cursor:pointer;}
+	.swiper-pagination-switch {display: inline-block;width: 8px;height: 8px;border-radius: 8px;background: #222;margin-right: 5px;opacity: 0.8;border: 1px solid #fff;cursor: pointer;}
+	.swiper-visible-switch {background: #aaa;}
+	.swiper-active-switch {background: #fff;}
+	.swiper-wrap{width:800px;margin:200px auto 2000px;}
+	</style>
+</head>
+<body>
+
+<!-------------- DEMOS ---------------->
+<!-- http://idangero.us/swiper/demos -->
+
+
+<!-------------------------------------------
+	.swiper -צריך להיות גובה ל
+-------------------------------------------->
+<div class="swiper-wrap">
+	<div class="swiper vertical-swipe" style="height:300px;">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide red-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 1</div>
+			</div>
+			<div class="swiper-slide blue-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 2</div>
+			</div>
+			<div class="swiper-slide orange-slide">
+				<div class="title" style="line-height:100px;margin:0;">Slide 3</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<button type="button" class="v-swipe-next">next</button>
+	<button type="button" class="v-swipe-prev">prev</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+
+// HTML הבא על האייטמים ב class אם רוצים שלא יהיה אפשר לגלול בטאצ' אז להוסיף את ה
+// swiper-no-swiping
+
+
+
+// ריענון / Refresh
+// mySwiper.update();
+
+
+
+//vertical swipe
+document.querySelectorAll('.vertical-swipe').length && (function(){
+	const slides = document.querySelectorAll('.vertical-swipe .swiper-slide');
+	const slidesLength = slides.length;
+	var vSwiper = new Swiper('.vertical-swipe', {
+		autoplay			: false,
+		speed				: 1000,
+		calculateHeight		: true,
+		autoHeight			: false,
+		pagination			: {
+								el 			 : '.vertical-swipe .swiper-pagination',
+								clickable	 : true,
+								renderBullet : function (i, className) {
+									return '<button type="button" class="'+className+'" aria-label="לחצו כאן למעבר לשקופית '+(i+1)+'"></button>';
+								}
+							},
+		longSwipes			: false,
+		followFinger		: false,
+		grabCursor			: true,
+		watchSlidesProgress	: true,
+		keyboard			: true,
+		slidesPerView		: 1,
+		loop				: false,
+		navigation			: {
+								nextEl: '.v-swipe-next',
+								prevEl: '.v-swipe-prev',
+							},
+		direction			: 'vertical',
+		mousewheel			: {
+								releaseOnEdges: false,
+							},
+		touchReleaseOnEdges	: true,
+		on					: {
+								slideChange: function(swiper){
+									if( document.querySelector('.vertical-swipe .swiper-pagination-bullet:focus') ) {
+										document.querySelector('.vertical-swipe .swiper-pagination-bullet-active').focus();
+									}
+								},
+								slideChangeTransitionStart: (swiper) => {
+									const activeIndex = swiper.activeIndex;
+									if( activeIndex > 0 && activeIndex < slidesLength-1 ) {
+										const {offsetTop} = swiper.el;
+										if( window.pageYOffset !== offsetTop ) {
+											jQuery('html, body').animate({
+												scrollTop: offsetTop,
+											});
+										}
+									}
+								},
+								slideChangeTransitionEnd: (swiper) => {
+									const activeIndex = swiper.activeIndex;
+									swiper.params.mousewheel.releaseOnEdges = activeIndex === 0 || activeIndex === slidesLength-1;
+								}
+							}
+	});
+}());
+
+
+</script>
+</body>
+</html>

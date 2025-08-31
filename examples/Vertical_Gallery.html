@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Vertical_Gallery</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	
+	<!-- Demo styles -->
+	<style>
+	html,body{position:relative;height:100%;}
+	button{background:none;border:none;cursor:pointer;}
+	body{background:#000;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:14px;color:#000;margin:0;padding:0;}
+	.swiper-slide{background-size:cover;background-position:center;}
+	.vertical-swiper-wrap{display:flex;width:100%;height:100%;}
+	.vertical-swiper-wrap .gallery-top{width:80%;height:100%;}
+	.vertical-swiper-wrap .gallery-thumbs{width:20%;height:100%;}
+	.gallery-thumbs .swiper-slide{cursor:pointer;filter:alpha(opacity=50);opacity:0.5;-khtml-opacity:0.5;}
+	.gallery-thumbs .swiper-slide-thumb-active{filter:alpha(opacity=100);opacity:1;-khtml-opacity:1;}
+	.swiper-slide:nth-child(1){background-image:url(gallery-with-transition-effect/images/1.jpg)}
+	.swiper-slide:nth-child(2){background-image:url(gallery-with-transition-effect/images/2.jpg)}
+	.swiper-slide:nth-child(3){background-image:url(gallery-with-transition-effect/images/3.jpg)}
+	.swiper-slide:nth-child(4){background-image:url(gallery-with-transition-effect/images/4.jpg)}
+	.swiper-slide:nth-child(5){background-image:url(gallery-with-transition-effect/images/5.jpg)}
+	.swiper-slide:nth-child(6){background-image:url(gallery-with-transition-effect/images/6.jpg)}
+	.swiper-slide:nth-child(7){background-image:url(gallery-with-transition-effect/images/7.jpg)}
+	.swiper-slide:nth-child(8){background-image:url(gallery-with-transition-effect/images/8.jpg)}
+	.swiper-slide:nth-child(9){background-image:url(gallery-with-transition-effect/images/9.jpg)}
+	.swiper-slide:nth-child(10){background-image:url(gallery-with-transition-effect/images/10.jpg)}
+	</style>
+	<!-- Demo styles -->
+</head>
+<body>
+	<!-- Swiper -->
+	<div class="vertical-swiper-wrap">
+		<div class="swiper gallery-top">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" id="gallery-tabpanel-1" aria-labelledby="thumb-tab-1"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-2" aria-labelledby="thumb-tab-2"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-3" aria-labelledby="thumb-tab-3"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-4" aria-labelledby="thumb-tab-4"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-5" aria-labelledby="thumb-tab-5"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-6" aria-labelledby="thumb-tab-6"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-7" aria-labelledby="thumb-tab-7"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-8" aria-labelledby="thumb-tab-8"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-9" aria-labelledby="thumb-tab-9"></div>
+				<div class="swiper-slide" id="gallery-tabpanel-10" aria-labelledby="thumb-tab-10"></div>
+			</div>
+			<button type="button" class="swiper-button-next gallery-top-next"></button>
+			<button type="button" class="swiper-button-prev gallery-top-prev"></button>
+		</div>
+		<div class="swiper gallery-thumbs">
+			<div class="swiper-wrapper">
+				<!-----------------------
+				button לא להחליף לכפתור
+				בגלל שזה עושה בעיות בגלילה כשתופסים עם העכבר
+				------------------------->
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-1" id="thumb-tab-1" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-2" id="thumb-tab-2" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-3" id="thumb-tab-3" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-4" id="thumb-tab-4" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-5" id="thumb-tab-5" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-6" id="thumb-tab-6" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-7" id="thumb-tab-7" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-8" id="thumb-tab-8" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-9" id="thumb-tab-9" class="swiper-slide"></div>
+				<div role="button" tabindex="0" aria-selected="false" aria-controls="gallery-tabpanel-10" id="thumb-tab-10" class="swiper-slide"></div>
+			</div>
+			<button type="button" class="swiper-button-next gallery-thumbs-next"></button>
+			<button type="button" class="swiper-button-prev gallery-thumbs-prev"></button>
+		</div>
+	</div>
+
+	<!-- Swiper JS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+	<!-- Initialize Swiper -->
+	<script>
+	if( document.querySelectorAll('.vertical-swiper-wrap').length ) {
+		var galleryThumbs = new Swiper('.gallery-thumbs', {
+			slidesPerView			: 4,
+			watchSlidesVisibility	: true,
+			direction				: 'vertical',
+			watchSlidesProgress		: true,
+			navigation				: {
+										nextEl	: '.gallery-thumbs-next',
+										prevEl	: '.gallery-thumbs-prev',
+									},
+			updateOnImagesReady		: true,
+			preventClicks			: true,
+			grabCursor				: true,
+			keyboard				: true,
+			a11y					: {
+										prevSlideMessage: 'מעבר לשקופית הקודמת',
+										nextSlideMessage: 'מעבר לשקופית הבאה',
+										slideRole: 'tab',
+									},
+			on						: {
+										init: function(swiper) {
+											var firstSlide = document.querySelector('.gallery-thumbs .swiper-slide');
+											if (firstSlide) {
+												firstSlide.setAttribute('aria-selected', 'true');
+											}
+										},
+										click: function(swiper, event) {
+											var slides = document.querySelectorAll('.gallery-thumbs .swiper-slide');
+											if (slides.length > 0) {
+												slides.forEach(function(slide) {
+													slide.setAttribute('aria-selected', 'false');
+												});
+											}
+											event.target.offsetParent.setAttribute('aria-selected', 'true');
+										}
+									},
+		});
+		var galleryTop = new Swiper('.gallery-top', {
+			watchSlidesProgress	: true,
+			updateOnImagesReady	: true,
+			preventClicks		: true,
+			grabCursor			: true,
+			keyboard			: true,
+			a11y				: {
+									prevSlideMessage: 'מעבר לשקופית הקודמת',
+									nextSlideMessage: 'מעבר לשקופית הבאה',
+									slideRole: 'tabpanel',
+								},
+			navigation			: {
+									nextEl	: '.gallery-top-next',
+									prevEl	: '.gallery-top-prev',
+								},
+			thumbs				: {
+									swiper	: galleryThumbs,
+								},
+			on					: {
+									slideChange: function(swiper){
+										if( document.querySelector('.gallery-thumbs .swiper-slide:focus') ) {
+											document.querySelector('.gallery-thumbs .swiper-slide-thumb-active').focus();
+										}
+									}
+								}
+		});
+		// Scroll the thumb to start
+		galleryThumbs.on('click', function (e) {
+			galleryThumbs.slideTo( galleryThumbs.clickedIndex );
+		});
+	}
+	</script>
+</body>
+</html>
